@@ -48,14 +48,15 @@ function renderDeals(productsList) {
         ${deals.map(p => {
 
           const discountedPrice =
-            (p.price / 100).toFixed(2);
+            Number(p.price)
+              .toFixed(2);
 
           const originalPrice =
             p.originalPrice || null;
 
           const formattedOriginal =
             originalPrice
-            ? (originalPrice / 100)
+            ? Number(originalPrice)
                 .toFixed(2)
             : null;
 
@@ -179,14 +180,15 @@ function renderProducts(productsList) {
   grid.innerHTML = productsList.map(p => {
 
     const discountedPrice =
-      (p.price / 100).toFixed(2);
+      Number(p.price)
+        .toFixed(2);
 
     const originalPrice =
       p.originalPrice || null;
 
     const formattedOriginal =
       originalPrice
-      ? (originalPrice / 100)
+      ? Number(originalPrice)
           .toFixed(2)
       : null;
 
@@ -284,7 +286,7 @@ function openModal(product) {
   ).textContent = product.name;
 
   const discountedPrice =
-    (product.price / 100)
+    Number(product.price)
       .toFixed(2);
 
   const originalPrice =
@@ -292,7 +294,7 @@ function openModal(product) {
 
   const formattedOriginal =
     originalPrice
-    ? (originalPrice / 100)
+    ? Number(originalPrice)
         .toFixed(2)
     : null;
 
