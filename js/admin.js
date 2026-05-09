@@ -98,7 +98,7 @@ async function loadProducts() {
 
           <p>
             ₹${(
-              product.price / 100
+              product.price
             ).toFixed(2)}
           </p>
 
