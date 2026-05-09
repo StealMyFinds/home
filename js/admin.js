@@ -1,44 +1,59 @@
-import { addProduct } from "./db.js";
+import {
+  addProduct,
+  getProducts,
+  deleteProduct,
+  updateProduct
+} from "./db.js";
 
 const form =
-  document.getElementById("productForm");
+  document.getElementById(
+    "productForm"
+  );
+
+const productsContainer =
+  document.getElementById(
+    "adminProducts"
+  );
 
 const imageContainer =
-  document.getElementById("imageContainer");
+  document.getElementById(
+    "imageContainer"
+  );
 
 const addImageBtn =
-  document.getElementById("addImageBtn");
+  document.getElementById(
+    "addImageBtn"
+  );
 
-// ➕ ADD IMAGE ROW
-addImageBtn.addEventListener("click", () => {
+// ➕ ADD IMAGE FIELD
+addImageBtn.addEventListener(
+  "click",
+  () => {
 
-  const row =
-    document.createElement("div");
+    const row =
+      document.createElement("div");
 
-  row.className = "image-row";
+    row.className = "image-row";
 
-  row.innerHTML = `
+    row.innerHTML = `
 
-    <input type="url"
-           class="image-input"
-           placeholder="Image URL">
+      <input type="url"
+             class="image-input"
+             placeholder="Image URL">
 
-    <input type="file"
-           class="image-file"
-           accept="image/*">
+      <button type="button"
+              class="remove-btn">
+        Remove
+      </button>
 
-    <button type="button"
-            class="remove-btn">
-      Remove
-    </button>
+    `;
 
-  `;
+    imageContainer.appendChild(row);
 
-  imageContainer.appendChild(row);
+  }
+);
 
-});
-
-// ❌ REMOVE IMAGE ROW
+// ❌ REMOVE IMAGE FIELD
 imageContainer.addEventListener(
   "click",
   e => {
@@ -55,45 +70,233 @@ imageContainer.addEventListener(
 
 });
 
-// 📦 SAVE PRODUCT
+// 📦 LOAD PRODUCTS
+async function loadProducts() {
+
+  const products =
+    await getProducts();
+
+  productsContainer.innerHTML =
+    products.map(product => {
+
+      const image =
+
+        (product.images &&
+         product.images.length > 0)
+
+        ? product.images[0]
+
+        : (product.image || "");
+
+      return `
+
+        <div class="admin-card">
+
+          <img src="${image}">
+
+          <h3>${product.name}</h3>
+
+          <p>
+            ₹${(
+              product.price / 100
+            ).toFixed(2)}
+          </p>
+
+          <div class="admin-actions">
+
+            <button
+              class="edit-btn"
+              data-id="${product.id}">
+              Edit
+            </button>
+
+            <button
+              class="delete-btn"
+              data-id="${product.id}">
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+  // ✏️ EDIT
+  document.querySelectorAll(
+    ".edit-btn"
+  ).forEach(btn => {
+
+    btn.addEventListener(
+      "click",
+      async () => {
+
+        const products =
+          await getProducts();
+
+        const product =
+          products.find(
+            p => p.id === btn.dataset.id
+          );
+
+        if (!product) return;
+
+        document.getElementById(
+          "editId"
+        ).value = product.id;
+
+        document.getElementById(
+          "name"
+        ).value = product.name || "";
+
+        document.getElementById(
+          "price"
+        ).value = product.price || "";
+
+        document.getElementById(
+          "originalPrice"
+        ).value =
+          product.originalPrice || "";
+
+        document.getElementById(
+          "category"
+        ).value =
+          product.category || "";
+
+        document.getElementById(
+          "description"
+        ).value =
+          product.description || "";
+
+        document.getElementById(
+          "link"
+        ).value =
+          product.link || "";
+
+        document.getElementById(
+          "deal"
+        ).value =
+          product.deal
+          ? "true"
+          : "false";
+
+        imageContainer.innerHTML = "";
+
+        const images =
+
+          (product.images &&
+           product.images.length > 0)
+
+          ? product.images
+
+          : (product.image
+              ? [product.image]
+              : []);
+
+        images.forEach(img => {
+
+          const row =
+            document.createElement(
+              "div"
+            );
+
+          row.className =
+            "image-row";
+
+          row.innerHTML = `
+
+            <input type="url"
+                   class="image-input"
+                   value="${img}">
+
+            <button type="button"
+                    class="remove-btn">
+              Remove
+            </button>
+
+          `;
+
+          imageContainer.appendChild(
+            row
+          );
+
+        });
+
+        window.scrollTo({
+
+          top: 0,
+
+          behavior: "smooth"
+
+        });
+
+      }
+    );
+
+  });
+
+  // ❌ DELETE
+  document.querySelectorAll(
+    ".delete-btn"
+  ).forEach(btn => {
+
+    btn.addEventListener(
+      "click",
+      async () => {
+
+        await deleteProduct(
+          btn.dataset.id
+        );
+
+        loadProducts();
+
+      }
+    );
+
+  });
+
+}
+
+// 💾 SAVE
 form.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    const imageRows =
+    const imageInputs =
       document.querySelectorAll(
-        ".image-row"
+        ".image-input"
       );
 
     const images = [];
 
-    for (const row of imageRows) {
+    imageInputs.forEach(input => {
 
-      const url =
-        row.querySelector(".image-input")
-          .value
-          .trim();
+      if (input.value.trim()) {
 
-      if (url) {
-
-        images.push(url);
+        images.push(
+          input.value.trim()
+        );
 
       }
 
-    }
+    });
 
     const product = {
 
       name:
-        document.getElementById("name")
-          .value,
+        document.getElementById(
+          "name"
+        ).value,
 
       price:
         Number(
-          document.getElementById("price")
-            .value
+          document.getElementById(
+            "price"
+          ).value
         ),
 
       originalPrice:
@@ -114,22 +317,46 @@ form.addEventListener(
         ).value,
 
       link:
-        document.getElementById("link")
-          .value,
+        document.getElementById(
+          "link"
+        ).value,
 
       deal:
-        document.getElementById("deal")
-          .value === "true",
+        document.getElementById(
+          "deal"
+        ).value === "true",
 
       images
 
     };
 
-    await addProduct(product);
+    const editId =
+      document.getElementById(
+        "editId"
+      ).value;
 
-    alert("Product Added!");
+    if (editId) {
+
+      await updateProduct(
+        editId,
+        product
+      );
+
+    } else {
+
+      await addProduct(product);
+
+    }
 
     form.reset();
 
+    document.getElementById(
+      "editId"
+    ).value = "";
+
+    loadProducts();
+
   }
 );
+
+loadProducts();
