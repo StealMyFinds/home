@@ -12,7 +12,7 @@ import {
 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ➕ ADD
+// ➕ ADD PRODUCT
 export async function addProduct(product) {
 
   await addDoc(
@@ -22,17 +22,17 @@ export async function addProduct(product) {
 
 }
 
-// 📦 GET
+// 📦 GET PRODUCTS
 export async function getProducts() {
 
-  const querySnapshot =
+  const snapshot =
     await getDocs(
       collection(db, "products")
     );
 
   const products = [];
 
-  querySnapshot.forEach(docSnap => {
+  snapshot.forEach(docSnap => {
 
     products.push({
 
@@ -48,7 +48,7 @@ export async function getProducts() {
 
 }
 
-// ❌ DELETE
+// ❌ DELETE PRODUCT
 export async function deleteProduct(id) {
 
   await deleteDoc(
@@ -57,7 +57,7 @@ export async function deleteProduct(id) {
 
 }
 
-// ✏️ UPDATE
+// ✏️ UPDATE PRODUCT
 export async function updateProduct(
   id,
   updatedData
