@@ -2,250 +2,204 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>StealMyFinds Admin</title>
 
 <style>
+
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: #fafafa;
   padding: 20px;
 }
 
-.box {
-  max-width: 650px;
-  margin: auto;
+form {
+  background: white;
   border: 3px solid black;
   padding: 20px;
-  background: white;
+  max-width: 700px;
+}
+
+label {
+  display: block;
+  margin-top: 16px;
+  font-weight: bold;
 }
 
 input,
-select,
-textarea {
+textarea,
+select {
+
   width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
+
+  padding: 12px;
+
+  margin-top: 6px;
+
   border: 2px solid black;
-  box-sizing: border-box;
+
+  font-size: 15px;
+
 }
 
 textarea {
-  min-height: 120px;
+  resize: vertical;
+  min-height: 100px;
 }
 
 button {
-  padding: 10px 14px;
-  border: 2px solid black;
+
+  margin-top: 20px;
+
   background: black;
+
   color: yellow;
-  cursor: pointer;
+
+  border: none;
+
+  padding: 14px 18px;
+
   font-weight: bold;
 
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+  cursor: pointer;
+
 }
 
-button:hover {
-  transform: translate(-3px, -3px);
+.image-row {
 
-  box-shadow:
-    3px 3px 0 black;
-}
-
-.image-row,
-.url-row {
   display: flex;
+
   gap: 10px;
-  margin-bottom: 10px;
+
+  margin-top: 10px;
+
 }
 
-.removeImageBtn,
-.removeUrlBtn {
+.image-row input {
+  flex: 1;
+}
+
+.remove-btn {
+
   background: red;
+
   color: white;
-  min-width: 90px;
+
 }
 
-.preview-grid {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.preview-grid img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border: 2px solid black;
-}
-
-.product-item {
-  border: 2px solid black;
-  padding: 12px;
-  margin-top: 12px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<h1>STEALMYFINDS ADMIN</h1>
 
-  <h1>STEALMYFINDS ADMIN</h1>
+<form id="productForm">
 
-  <!-- LOGIN -->
-  <div id="loginBox">
+  <label>Product Name</label>
 
-    <input id="email" placeholder="Email">
+  <input type="text"
+         id="name"
+         required>
 
-    <input id="password"
-           type="password"
-           placeholder="Password">
+  <label>Discounted Price</label>
 
-    <button id="loginBtn">
-      Login
-    </button>
+  <input type="number"
+         id="price"
+         placeholder="49900"
+         required>
 
-  </div>
+  <label>Original Price</label>
 
-  <!-- ADMIN -->
-  <div id="adminPanel"
-       style="display:none;">
+  <input type="number"
+         id="originalPrice"
+         placeholder="79900">
 
-    <h2>Add / Edit Product</h2>
+  <label>Category</label>
 
-    <input id="name"
-           placeholder="Product Name">
+  <select id="category">
 
-    <input id="price"
-           placeholder="Price in rupees">
+    <option>
+      Electronics & Gadgets
+    </option>
 
-    <input id="link"
-           placeholder="Affiliate Link">
+    <option>
+      Fashion & Beauty
+    </option>
 
-    <textarea id="description"
-              placeholder="Description"></textarea>
+    <option>
+      Home & Kitchen
+    </option>
 
-    <!-- CATEGORY -->
-    <select id="category">
+    <option>
+      Health & Fitness
+    </option>
 
-      <option value="Electronics & Gadgets">
-        Electronics & Gadgets
-      </option>
+  </select>
 
-      <option value="Fashion & Beauty">
-        Fashion & Beauty
-      </option>
+  <label>Description</label>
 
-      <option value="Home & Kitchen">
-        Home & Kitchen
-      </option>
+  <textarea id="description"></textarea>
 
-      <option value="Health & Fitness">
-        Health & Fitness
-      </option>
+  <label>Affiliate/Product Link</label>
 
-      <option value="Books & Courses">
-        Books & Courses
-      </option>
+  <input type="url"
+         id="link">
 
-    </select>
+  <label>Deal Of The Day</label>
 
-    <!-- DEAL -->
-    <select id="deal">
+  <select id="deal">
 
-      <option value="no">
-        Normal Product
-      </option>
+    <option value="false">
+      No
+    </option>
 
-      <option value="yes">
-        🔥 Deal Product
-      </option>
+    <option value="true">
+      Yes
+    </option>
 
-    </select>
+  </select>
 
-    <!-- LOCAL FILES -->
-    <h3>Local Images</h3>
+  <label>Images</label>
 
-    <div id="imageInputs">
+  <div id="imageContainer">
 
-      <div class="image-row">
+    <div class="image-row">
 
-        <input type="file"
-               class="imageInput"
-               accept="image/*">
+      <input type="url"
+             class="image-input"
+             placeholder="Image URL">
 
-        <button type="button"
-                class="removeImageBtn">
-          Remove
-        </button>
+      <input type="file"
+             class="image-file"
+             accept="image/*">
 
-      </div>
+      <button type="button"
+              class="remove-btn">
+        Remove
+      </button>
 
     </div>
 
-    <button type="button"
-            id="addImageBtn">
-      + Add More Images
-    </button>
-
-    <!-- URL IMAGES -->
-    <h3>Image URLs</h3>
-
-    <div id="urlInputs">
-
-      <div class="url-row">
-
-        <input type="text"
-               class="urlImageInput"
-               placeholder="Paste image URL">
-
-        <button type="button"
-                class="removeUrlBtn">
-          Remove
-        </button>
-
-      </div>
-
-    </div>
-
-    <button type="button"
-            id="addUrlBtn">
-      + Add Image URL
-    </button>
-
-    <!-- PREVIEW -->
-    <div id="previewGrid"
-         class="preview-grid"></div>
-
-    <br>
-
-    <button id="saveBtn">
-      Save Product
-    </button>
-
-    <button id="logoutBtn"
-            style="
-              background:red;
-              color:white;
-            ">
-      Logout
-    </button>
-
-    <hr>
-
-    <h2>Existing Products</h2>
-
-    <div id="productList"></div>
-
   </div>
 
-</div>
+  <button type="button"
+          id="addImageBtn">
+    Add More Images
+  </button>
 
-<script type="module" src="js/admin.js"></script>
+  <br>
+
+  <button type="submit">
+    SAVE PRODUCT
+  </button>
+
+</form>
+
+<script type="module"
+        src="js/admin.js"></script>
 
 </body>
 </html>
