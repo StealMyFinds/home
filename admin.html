@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StealMyFinds Admin</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #fafafa;
+  padding: 20px;
+}
+
+.box {
+  max-width: 650px;
+  margin: auto;
+  border: 3px solid black;
+  padding: 20px;
+  background: white;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 2px solid black;
+  box-sizing: border-box;
+}
+
+textarea {
+  min-height: 120px;
+}
+
+button {
+  padding: 10px 14px;
+  border: 2px solid black;
+  background: black;
+  color: yellow;
+  cursor: pointer;
+  font-weight: bold;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translate(-3px, -3px);
+
+  box-shadow:
+    3px 3px 0 black;
+}
+
+.image-row,
+.url-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.removeImageBtn,
+.removeUrlBtn {
+  background: red;
+  color: white;
+  min-width: 90px;
+}
+
+.preview-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.preview-grid img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid black;
+}
+
+.product-item {
+  border: 2px solid black;
+  padding: 12px;
+  margin-top: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h1>STEALMYFINDS ADMIN</h1>
+
+  <!-- LOGIN -->
+  <div id="loginBox">
+
+    <input id="email" placeholder="Email">
+
+    <input id="password"
+           type="password"
+           placeholder="Password">
+
+    <button id="loginBtn">
+      Login
+    </button>
+
+  </div>
+
+  <!-- ADMIN -->
+  <div id="adminPanel"
+       style="display:none;">
+
+    <h2>Add / Edit Product</h2>
+
+    <input id="name"
+           placeholder="Product Name">
+
+    <input id="price"
+           placeholder="Price in rupees">
+
+    <input id="link"
+           placeholder="Affiliate Link">
+
+    <textarea id="description"
+              placeholder="Description"></textarea>
+
+    <!-- CATEGORY -->
+    <select id="category">
+
+      <option value="Electronics & Gadgets">
+        Electronics & Gadgets
+      </option>
+
+      <option value="Fashion & Beauty">
+        Fashion & Beauty
+      </option>
+
+      <option value="Home & Kitchen">
+        Home & Kitchen
+      </option>
+
+      <option value="Health & Fitness">
+        Health & Fitness
+      </option>
+
+      <option value="Books & Courses">
+        Books & Courses
+      </option>
+
+    </select>
+
+    <!-- DEAL -->
+    <select id="deal">
+
+      <option value="no">
+        Normal Product
+      </option>
+
+      <option value="yes">
+        🔥 Deal Product
+      </option>
+
+    </select>
+
+    <!-- LOCAL FILES -->
+    <h3>Local Images</h3>
+
+    <div id="imageInputs">
+
+      <div class="image-row">
+
+        <input type="file"
+               class="imageInput"
+               accept="image/*">
+
+        <button type="button"
+                class="removeImageBtn">
+          Remove
+        </button>
+
+      </div>
+
+    </div>
+
+    <button type="button"
+            id="addImageBtn">
+      + Add More Images
+    </button>
+
+    <!-- URL IMAGES -->
+    <h3>Image URLs</h3>
+
+    <div id="urlInputs">
+
+      <div class="url-row">
+
+        <input type="text"
+               class="urlImageInput"
+               placeholder="Paste image URL">
+
+        <button type="button"
+                class="removeUrlBtn">
+          Remove
+        </button>
+
+      </div>
+
+    </div>
+
+    <button type="button"
+            id="addUrlBtn">
+      + Add Image URL
+    </button>
+
+    <!-- PREVIEW -->
+    <div id="previewGrid"
+         class="preview-grid"></div>
+
+    <br>
+
+    <button id="saveBtn">
+      Save Product
+    </button>
+
+    <button id="logoutBtn"
+            style="
+              background:red;
+              color:white;
+            ">
+      Logout
+    </button>
+
+    <hr>
+
+    <h2>Existing Products</h2>
+
+    <div id="productList"></div>
+
+  </div>
+
+</div>
+
+<script type="module" src="js/admin.js"></script>
+
+</body>
+</html>
