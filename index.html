@@ -5,479 +5,81 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>StealMyFinds</title>
+<title>StealMyFinds Admin</title>
 
 <style>
 
-* {
-  box-sizing: border-box;
-}
-
-html,
 body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+
   font-family: Arial, sans-serif;
+
   background: #fafafa;
-}
-
-/* 🧭 NAV */
-.nav {
-  background: black;
-  color: yellow;
-  padding: 16px 24px;
-  position: relative;
-  z-index: 2;
-}
-
-.nav h1 {
-  margin: 0;
-  font-size: 34px;
-}
-
-/* 🔥 HERO */
-.hero {
-
-  background: #FFD600;
-
-  padding: 140px 24px 80px;
-
-  border-bottom: 3px solid black;
-
-  position: relative;
-
-  overflow: hidden;
-
-}
-
-.hero-content {
-
-  max-width: 720px;
-
-  position: relative;
-
-  z-index: 2;
-
-}
-
-.hero-tag {
-
-  display: inline-block;
-
-  background: black;
-
-  color: yellow;
-
-  padding: 8px 14px;
-
-  font-size: 12px;
-
-  font-weight: bold;
-
-  letter-spacing: 4px;
-
-  margin-bottom: 24px;
-
-}
-
-.hero-title {
-
-  font-size: 92px;
-
-  font-weight: 900;
-
-  line-height: 0.9;
-
-  margin: 0 0 24px;
-
-  text-transform: uppercase;
-
-}
-
-.hero-sub {
-
-  font-size: 20px;
-
-  max-width: 620px;
-
-  line-height: 1.5;
-
-}
-
-.hero-bg {
-
-  position: absolute;
-
-  right: 30px;
-
-  top: 20px;
-
-  font-size: 220px;
-
-  font-weight: 900;
-
-  color: rgba(0,0,0,0.05);
-
-  line-height: 1;
-
-  user-select: none;
-
-  pointer-events: none;
-
-}
-
-/* 🔍 SEARCH */
-.search-wrapper {
-
-  position: fixed;
-
-  top: 12px;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  z-index: 9999;
-
-  width: 620px;
-
-  max-width: calc(100vw - 24px);
-
-}
-
-.hero-search {
-
-  display: flex;
-
-  align-items: stretch;
-
-  width: 100%;
-
-  border: 3px solid black;
-
-  background: white;
-
-  box-shadow:
-    6px 6px 0 black;
-
-}
-
-.hero-search input {
-
-  flex: 1;
-
-  border: none;
-
-  padding: 18px;
-
-  font-size: 18px;
-
-  font-weight: bold;
-
-  outline: none;
-
-  min-width: 0;
-
-}
-
-.search-btn {
-
-  background: black;
-
-  color: yellow;
-
-  border: none;
-
-  padding: 0 30px;
-
-  font-size: 18px;
-
-  font-weight: bold;
-
-  cursor: pointer;
-
-  transition:
-    background 0.15s ease,
-    color 0.15s ease;
-
-}
-
-.search-btn:hover {
-
-  background: yellow;
-
-  color: black;
-
-}
-
-/* 🔥 DEALS */
-.deal {
-
-  background: red;
-
-  color: white;
-
-  padding: 20px;
-
-  margin: 20px;
-
-  border: 3px solid black;
-
-}
-
-.deal h2 {
-  margin-top: 0;
-}
-
-/* 🛍 GRID */
-.grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fill, minmax(220px,1fr));
-
-  gap: 20px;
 
   padding: 20px;
 
 }
 
-/* 🃏 CARD */
-.card {
+form {
 
   background: white;
 
   border: 3px solid black;
 
-  padding: 15px;
+  padding: 20px;
 
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  min-height: 520px;
-
-  overflow: hidden;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
+  max-width: 700px;
 
 }
 
-.card:hover {
-
-  transform: translate(-6px, -6px);
-
-  box-shadow:
-    6px 6px 0 black;
-
-}
-
-.card img {
-
-  width: 100%;
-
-  height: 220px;
-
-  object-fit: cover;
+label {
 
   display: block;
 
-}
+  margin-top: 16px;
 
-.card h3 {
-
-  margin: 14px 0 10px;
-
-  font-size: 17px;
-
-  line-height: 1.35;
-
-  height: 70px;
-
-  overflow: hidden;
-
-  display: -webkit-box;
-
-  -webkit-line-clamp: 3;
-
-  -webkit-box-orient: vertical;
+  font-weight: bold;
 
 }
 
-.card p {
-
-  margin: 8px 0;
-
-}
-
-/* 🔥 DEAL CARD */
-.deal-card {
-
-  background: white;
-
-  border: 3px solid black;
-
-  padding: 14px;
-
-  width: 220px;
-
-  min-height: 430px;
-
-  text-align: center;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  gap: 10px;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
-
-}
-
-.deal-card:hover {
-
-  transform: translate(-6px, -6px);
-
-  box-shadow:
-    6px 6px 0 black;
-
-}
-
-.deal-card img {
+input,
+textarea,
+select {
 
   width: 100%;
 
-  height: 160px;
+  padding: 12px;
 
-  object-fit: cover;
+  margin-top: 6px;
 
   border: 2px solid black;
 
-}
-
-.deal-card h4 {
-
-  margin: 0;
-
-  font-size: 18px;
-
-  line-height: 1.35;
-
-  height: 74px;
-
-  overflow: hidden;
-
-  display: -webkit-box;
-
-  -webkit-line-clamp: 3;
-
-  -webkit-box-orient: vertical;
-
-  color: black;
+  font-size: 15px;
 
 }
 
-.deal-card p {
+textarea {
 
-  margin: 0;
+  resize: vertical;
 
-  color: black;
+  min-height: 100px;
 
 }
 
-/* 🟡 BUTTONS */
-.buy {
+button {
+
+  margin-top: 20px;
 
   background: black;
 
   color: yellow;
 
-  padding: 10px 14px;
+  border: none;
 
-  display: inline-block;
-
-  text-decoration: none;
+  padding: 14px 18px;
 
   font-weight: bold;
 
-  border: 2px solid black;
-
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease,
-    color 0.15s ease;
-
-}
-
-.buy:hover {
-
-  transform:
-    translate(-4px,-4px)
-    scale(1.05);
-
-  box-shadow:
-    4px 4px 0 black;
-
-  background: yellow;
-
-  color: black;
-
-}
-
-/* 🧭 TABS */
-.tabs {
-
-  display: flex;
-
-  gap: 14px;
-
-  padding: 20px;
-
-  flex-wrap: wrap;
-
-}
-
-.tab {
-
-  min-width: 170px;
-
-  height: 54px;
-
-  padding: 0 22px;
-
-  border: 3px solid black;
-
-  background: white;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  font-size: 15px;
-
-  font-weight: 700;
-
   cursor: pointer;
-
-  white-space: nowrap;
 
   transition:
     transform 0.15s ease,
@@ -485,415 +87,36 @@ body {
 
 }
 
-.tab:hover {
+button:hover {
 
-  transform: translate(-4px,-4px);
+  transform: translate(-3px,-3px);
 
   box-shadow:
-    4px 4px 0 black;
+    3px 3px 0 black;
 
 }
 
-.tab.active {
-
-  background: black;
-
-  color: yellow;
-
-}
-
-/* 🪟 MODAL */
-.modal {
-
-  position: fixed;
-
-  inset: 0;
-
-  background: rgba(0,0,0,0.72);
+.image-row {
 
   display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  padding: 20px;
-
-  z-index: 999999;
-
-  backdrop-filter: blur(3px);
-
-}
-
-.hidden {
-  display: none;
-}
-
-.modal-content {
-
-  background: white;
-
-  padding: 20px;
-
-  border: 3px solid black;
-
-  width: 620px;
-
-  max-width: 95vw;
-
-  max-height: 92vh;
-
-  overflow-y: auto;
-
-  position: relative;
-
-}
-
-.close {
-
-  position: absolute;
-
-  top: 10px;
-
-  right: 14px;
-
-  cursor: pointer;
-
-  font-size: 28px;
-
-}
-
-/* 🎞 SLIDER */
-.modal-slider {
-
-  position: relative;
-
-  overflow: hidden;
-
-  border: 3px solid black;
-
-  background: #f5f5f5;
-
-}
-
-.slider-track {
-
-  display: flex;
-
-  transition: transform 0.4s ease;
-
-}
-
-.slide {
-
-  min-width: 100%;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  background: #f5f5f5;
-
-  padding: 10px;
-
-}
-
-.slide img {
-
-  width: 100%;
-
-  height: auto;
-
-  max-height: 70vh;
-
-  object-fit: contain;
-
-  display: block;
-
-}
-
-/* ⬅️➡️ BUTTONS */
-.slider-nav {
-
-  position: absolute;
-
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  background: rgba(0,0,0,0.82);
-
-  color: yellow;
-
-  border: 3px solid black;
-
-  width: 52px;
-
-  height: 52px;
-
-  font-size: 24px;
-
-  cursor: pointer;
-
-  z-index: 99;
-
-}
-
-.prev-btn {
-  left: 10px;
-}
-
-.next-btn {
-  right: 10px;
-}
-
-/* 🔘 DOTS */
-.slider-controls {
-
-  display: flex;
-
-  justify-content: center;
 
   gap: 10px;
 
-  margin-top: 12px;
+  margin-top: 10px;
 
 }
 
-.slider-dot {
+.image-row input {
 
-  width: 14px;
-
-  height: 14px;
-
-  border-radius: 50%;
-
-  background: #ccc;
-
-  border: 2px solid black;
-
-  cursor: pointer;
+  flex: 1;
 
 }
 
-.slider-dot.active {
-  background: black;
-}
+.remove-btn {
 
-/* 📱 MOBILE */
-@media (max-width: 768px) {
+  background: red;
 
-  .hero {
-
-    padding:
-      120px 18px 40px;
-
-  }
-
-  .hero-title {
-
-    font-size: 52px;
-
-    line-height: 0.95;
-
-  }
-
-  .hero-sub {
-
-    font-size: 16px;
-
-  }
-
-  .hero-tag {
-
-    font-size: 10px;
-
-    letter-spacing: 3px;
-
-  }
-
-  .hero-bg {
-
-    font-size: 90px;
-
-    right: 10px;
-
-    top: 50px;
-
-  }
-
-  .nav {
-
-    padding: 14px 16px;
-
-  }
-
-  .nav h1 {
-
-    font-size: 28px;
-
-  }
-
-  .search-wrapper {
-
-    width: calc(100vw - 24px);
-
-    top: 10px;
-
-  }
-
-  .hero-search input {
-
-    padding: 14px;
-
-    font-size: 15px;
-
-  }
-
-  .search-btn {
-
-    font-size: 15px;
-
-    padding: 0 18px;
-
-  }
-
-  .grid {
-
-    grid-template-columns:
-      repeat(2, 1fr);
-
-    gap: 12px;
-
-    padding: 12px;
-
-  }
-
-  .card {
-
-    min-height: 390px;
-
-    padding: 10px;
-
-  }
-
-  .card img {
-
-    height: 150px;
-
-  }
-
-  .card h3 {
-
-    font-size: 14px;
-
-    height: 58px;
-
-  }
-
-  .deal {
-
-    margin: 12px;
-
-    padding: 14px;
-
-  }
-
-  .deal-card {
-
-    width: 100%;
-
-    min-height: 340px;
-
-  }
-
-  .deal-card img {
-
-    height: 130px;
-
-  }
-
-  .deal-card h4 {
-
-    font-size: 15px;
-
-    height: 60px;
-
-  }
-
-  .buy {
-
-    width: 100%;
-
-    text-align: center;
-
-  }
-
-  .tabs {
-
-    overflow-x: auto;
-
-    flex-wrap: nowrap;
-
-    scrollbar-width: none;
-
-  }
-
-  .tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .tab {
-
-    flex-shrink: 0;
-
-    min-width: 150px;
-
-  }
-
-  .modal-content {
-
-    width: 100%;
-
-    padding: 14px;
-
-  }
-
-  .slide img {
-
-    max-height: 55vh;
-
-  }
-
-}
-
-@media (max-width: 480px) {
-
-  .hero-title {
-
-    font-size: 42px;
-
-  }
-
-  .card {
-
-    min-height: 360px;
-
-  }
-
-  .card img {
-
-    height: 135px;
-
-  }
-
-  .card h3 {
-
-    font-size: 13px;
-
-  }
+  color: white;
 
 }
 
@@ -902,137 +125,114 @@ body {
 
 <body>
 
-<div class="nav">
-  <h1>STEALMYFINDS</h1>
-</div>
+<h1>STEALMYFINDS ADMIN</h1>
 
-<div class="search-wrapper">
+<form id="productForm">
 
-  <div class="hero-search">
+  <label>Product Name</label>
 
-    <input id="searchInput"
-           placeholder="Search products, brands, categories...">
+  <input type="text"
+         id="name"
+         required>
 
-    <button id="searchBtn"
-            class="search-btn">
-      SEARCH
-    </button>
+  <label>Discounted Price</label>
 
-  </div>
+  <input type="number"
+         id="price"
+         placeholder="49900"
+         required>
 
-</div>
+  <label>Original Price</label>
 
-<div class="hero">
+  <input type="number"
+         id="originalPrice"
+         placeholder="79900">
 
-  <div class="hero-bg">
-    HOT
-  </div>
+  <label>Category</label>
 
-  <div class="hero-content">
+  <select id="category">
 
-    <div class="hero-tag">
-      BEST DEALS CURATED DAILY
-    </div>
+    <option>
+      Electronics & Gadgets
+    </option>
 
-    <h1 class="hero-title">
-      COME STEAL <br>
-      MY FINDS 🎀
-    </h1>
+    <option>
+      Fashion & Beauty
+    </option>
 
-    <p class="hero-sub">
-      Top picks across Electronics,
-      Fashion, Home, Health & More.
-    </p>
+    <option>
+      Home & Kitchen
+    </option>
 
-  </div>
+    <option>
+      Health & Fitness
+    </option>
 
-</div>
+  </select>
 
-<div id="dealSection"></div>
+  <label>Description</label>
 
-<div id="categoryTabs"
-     class="tabs">
+  <textarea id="description"></textarea>
 
-  <button class="tab active"
-          data-category="All">
-    All
-  </button>
+  <label>Affiliate/Product Link</label>
 
-  <button class="tab"
-          data-category="Electronics & Gadgets">
-    Electronics & Gadgets
-  </button>
+  <input type="url"
+         id="link">
 
-  <button class="tab"
-          data-category="Fashion & Beauty">
-    Fashion & Beauty
-  </button>
+  <label>
+    Deal Of The Day
+  </label>
 
-  <button class="tab"
-          data-category="Home & Kitchen">
-    Home & Kitchen
-  </button>
+  <select id="deal">
 
-  <button class="tab"
-          data-category="Health & Fitness">
-    Health & Fitness
-  </button>
+    <option value="false">
+      No
+    </option>
 
-</div>
+    <option value="true">
+      Yes
+    </option>
 
-<div id="productGrid"
-     class="grid"></div>
+  </select>
 
-<div id="productModal"
-     class="modal hidden">
+  <label>Images</label>
 
-  <div class="modal-content">
+  <div id="imageContainer">
 
-    <span id="closeModal"
-          class="close">
-      ×
-    </span>
+    <div class="image-row">
 
-    <div class="modal-slider">
+      <input type="url"
+             class="image-input"
+             placeholder="Image URL">
 
-      <button class="slider-nav prev-btn"
-              id="prevSlide">
-        ‹
-      </button>
+      <input type="file"
+             class="image-file"
+             accept="image/*">
 
-      <div id="sliderTrack"
-           class="slider-track">
-      </div>
-
-      <button class="slider-nav next-btn"
-              id="nextSlide">
-        ›
+      <button type="button"
+              class="remove-btn">
+        Remove
       </button>
 
     </div>
 
-    <div id="sliderControls"
-         class="slider-controls">
-    </div>
-
-    <h2 id="modalName"></h2>
-
-    <p id="modalPrice"></p>
-
-    <p id="modalDesc"></p>
-
-    <a id="modalLink"
-       target="_blank"
-       class="buy">
-      BUY NOW
-    </a>
-
   </div>
 
-</div>
+  <button type="button"
+          id="addImageBtn">
+    Add More Images
+  </button>
+
+  <br>
+
+  <button type="submit">
+    SAVE PRODUCT
+  </button>
+
+</form>
 
 <script type="module"
-        src="js/app.js"></script>
+        src="js/admin.js"></script>
 
 </body>
 </html>
