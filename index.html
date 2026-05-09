@@ -13,27 +13,32 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-family: Arial;
   margin: 0;
-  background: #fafafa;
+  padding: 0;
   overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  background: #fafafa;
 }
 
 /* 🧭 NAV */
 .nav {
   background: black;
   color: yellow;
-
   padding: 16px 24px;
+  position: relative;
+  z-index: 2;
 }
 
 .nav h1 {
   margin: 0;
+  font-size: 34px;
 }
 
-/* 🔥 PREMIUM HERO */
+/* 🔥 HERO */
 .hero {
+
   background: #FFD600;
 
   padding: 140px 24px 80px;
@@ -43,33 +48,43 @@ body {
   position: relative;
 
   overflow: hidden;
+
 }
 
 .hero-content {
+
   max-width: 720px;
 
   position: relative;
+
   z-index: 2;
+
 }
 
 .hero-tag {
+
   display: inline-block;
 
   background: black;
+
   color: yellow;
 
   padding: 8px 14px;
 
   font-size: 12px;
+
   font-weight: bold;
 
   letter-spacing: 4px;
 
   margin-bottom: 24px;
+
 }
 
 .hero-title {
+
   font-size: 92px;
+
   font-weight: 900;
 
   line-height: 0.9;
@@ -77,23 +92,29 @@ body {
   margin: 0 0 24px;
 
   text-transform: uppercase;
+
 }
 
 .hero-sub {
+
   font-size: 20px;
 
   max-width: 620px;
 
   line-height: 1.5;
+
 }
 
 .hero-bg {
+
   position: absolute;
 
   right: 30px;
+
   top: 20px;
 
   font-size: 220px;
+
   font-weight: 900;
 
   color: rgba(0,0,0,0.05);
@@ -103,14 +124,15 @@ body {
   user-select: none;
 
   pointer-events: none;
+
 }
 
-/* 🔍 FIXED SEARCH */
+/* 🔍 SEARCH */
 .search-wrapper {
 
   position: fixed;
 
-  top: 18px;
+  top: 12px;
 
   left: 50%;
 
@@ -120,11 +142,12 @@ body {
 
   width: 620px;
 
-  max-width: calc(100vw - 40px);
+  max-width: calc(100vw - 24px);
 
 }
 
 .hero-search {
+
   display: flex;
 
   align-items: stretch;
@@ -137,9 +160,11 @@ body {
 
   box-shadow:
     6px 6px 0 black;
+
 }
 
 .hero-search input {
+
   flex: 1;
 
   border: none;
@@ -147,15 +172,19 @@ body {
   padding: 18px;
 
   font-size: 18px;
+
   font-weight: bold;
 
   outline: none;
 
   min-width: 0;
+
 }
 
 .search-btn {
+
   background: black;
+
   color: yellow;
 
   border: none;
@@ -163,38 +192,47 @@ body {
   padding: 0 30px;
 
   font-size: 18px;
+
   font-weight: bold;
 
   cursor: pointer;
 
-  white-space: nowrap;
-
   transition:
     background 0.15s ease,
-    color 0.15s ease,
-    transform 0.15s ease;
+    color 0.15s ease;
+
 }
 
 .search-btn:hover {
 
   background: yellow;
+
   color: black;
 
 }
 
 /* 🔥 DEALS */
 .deal {
+
   background: red;
+
   color: white;
 
   padding: 20px;
+
   margin: 20px;
 
   border: 3px solid black;
+
+}
+
+.deal h2 {
+  margin-top: 0;
 }
 
 /* 🛍 GRID */
 .grid {
+
   display: grid;
 
   grid-template-columns:
@@ -203,9 +241,10 @@ body {
   gap: 20px;
 
   padding: 20px;
+
 }
 
-/* 🃏 PRODUCT CARD */
+/* 🃏 CARD */
 .card {
 
   background: white;
@@ -237,7 +276,45 @@ body {
   transform: translate(-6px, -6px);
 
   box-shadow:
-    6px 6px 0px black;
+    6px 6px 0 black;
+
+}
+
+.card img {
+
+  width: 100%;
+
+  height: 220px;
+
+  object-fit: cover;
+
+  display: block;
+
+}
+
+.card h3 {
+
+  margin: 14px 0 10px;
+
+  font-size: 17px;
+
+  line-height: 1.35;
+
+  height: 70px;
+
+  overflow: hidden;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+
+}
+
+.card p {
+
+  margin: 8px 0;
 
 }
 
@@ -277,66 +354,22 @@ body {
   transform: translate(-6px, -6px);
 
   box-shadow:
-    6px 6px 0px black;
+    6px 6px 0 black;
 
 }
 
-/* 🖼 IMAGES */
-.card img,
 .deal-card img {
 
   width: 100%;
 
-  object-fit: cover;
-
-  display: block;
-
-}
-
-.card img {
-
-  height: 220px;
-
-}
-
-.deal-card img {
-
   height: 160px;
+
+  object-fit: cover;
 
   border: 2px solid black;
 
 }
 
-/* 📝 PRODUCT TITLE */
-.card h3 {
-
-  margin: 14px 0 10px;
-
-  font-size: 17px;
-
-  line-height: 1.35;
-
-  height: 70px;
-
-  overflow: hidden;
-
-  display: -webkit-box;
-
-  -webkit-line-clamp: 3;
-
-  -webkit-box-orient: vertical;
-
-  text-overflow: ellipsis;
-
-}
-
-.card p {
-
-  margin: 8px 0;
-
-}
-
-/* 🔥 DEAL TITLE */
 .deal-card h4 {
 
   margin: 0;
@@ -355,8 +388,6 @@ body {
 
   -webkit-box-orient: vertical;
 
-  text-overflow: ellipsis;
-
   color: black;
 
 }
@@ -370,8 +401,7 @@ body {
 }
 
 /* 🟡 BUTTONS */
-.buy,
-.deal-card .buy {
+.buy {
 
   background: black;
 
@@ -395,22 +425,22 @@ body {
 
 }
 
-.buy:hover,
-.deal-card .buy:hover {
+.buy:hover {
 
   transform:
-    translate(-4px, -4px)
+    translate(-4px,-4px)
     scale(1.05);
 
   box-shadow:
-    4px 4px 0px black;
+    4px 4px 0 black;
 
   background: yellow;
+
   color: black;
 
 }
 
-/* 🧭 CATEGORYS */
+/* 🧭 TABS */
 .tabs {
 
   display: flex;
@@ -441,31 +471,26 @@ body {
 
   justify-content: center;
 
-  text-align: center;
-
   font-size: 15px;
 
   font-weight: 700;
 
   cursor: pointer;
 
+  white-space: nowrap;
+
   transition:
-    min-width 0.25s ease,
     transform 0.15s ease,
     box-shadow 0.15s ease;
-
-  white-space: nowrap;
 
 }
 
 .tab:hover {
 
-  min-width: 240px;
-
-  transform: translate(-4px, -4px);
+  transform: translate(-4px,-4px);
 
   box-shadow:
-    4px 4px 0px black;
+    4px 4px 0 black;
 
 }
 
@@ -484,21 +509,17 @@ body {
 
   inset: 0;
 
-  width: 100vw;
-  height: 100vh;
-
   background: rgba(0,0,0,0.72);
 
   display: flex;
 
   justify-content: center;
+
   align-items: center;
 
   padding: 20px;
 
   z-index: 999999;
-
-  overflow: hidden;
 
   backdrop-filter: blur(3px);
 
@@ -524,21 +545,21 @@ body {
 
   overflow-y: auto;
 
-  text-align: center;
-
   position: relative;
-
-  z-index: 1000000;
 
 }
 
 .close {
 
-  float: right;
+  position: absolute;
+
+  top: 10px;
+
+  right: 14px;
 
   cursor: pointer;
 
-  font-size: 24px;
+  font-size: 28px;
 
 }
 
@@ -550,8 +571,6 @@ body {
   overflow: hidden;
 
   border: 3px solid black;
-
-  background: #f2f2f2;
 
 }
 
@@ -577,8 +596,6 @@ body {
 
   object-fit: cover;
 
-  display: block;
-
 }
 
 /* ⬅️➡️ BUTTONS */
@@ -597,30 +614,14 @@ body {
   border: 3px solid black;
 
   width: 52px;
+
   height: 52px;
 
   font-size: 24px;
-  font-weight: bold;
 
   cursor: pointer;
 
-  z-index: 99999;
-
-  transition:
-    transform 0.15s ease,
-    background 0.15s ease;
-
-}
-
-.slider-nav:hover {
-
-  background: yellow;
-
-  color: black;
-
-  transform:
-    translateY(-50%)
-    scale(1.08);
+  z-index: 99;
 
 }
 
@@ -662,33 +663,24 @@ body {
 }
 
 .slider-dot.active {
-
   background: black;
-
 }
 
 /* 📱 MOBILE */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
 
-  .hero-title {
+  .hero {
 
-    font-size: 64px;
-
-  }
-
-  .hero-bg {
-
-    font-size: 120px;
+    padding:
+      120px 18px 40px;
 
   }
 
-}
-
-@media (max-width: 700px) {
-
   .hero-title {
 
-    font-size: 46px;
+    font-size: 52px;
+
+    line-height: 0.95;
 
   }
 
@@ -698,21 +690,192 @@ body {
 
   }
 
-  .hero-bg {
+  .hero-tag {
 
-    display: none;
+    font-size: 10px;
+
+    letter-spacing: 3px;
 
   }
 
-  .hero-search {
+  .hero-bg {
 
-    flex-direction: column;
+    font-size: 90px;
+
+    right: 10px;
+
+    top: 50px;
+
+  }
+
+  .nav {
+
+    padding: 14px 16px;
+
+  }
+
+  .nav h1 {
+
+    font-size: 28px;
+
+  }
+
+  .search-wrapper {
+
+    width: calc(100vw - 24px);
+
+    top: 10px;
+
+  }
+
+  .hero-search input {
+
+    padding: 14px;
+
+    font-size: 15px;
 
   }
 
   .search-btn {
 
+    font-size: 15px;
+
+    padding: 0 18px;
+
+  }
+
+  .grid {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 12px;
+
+    padding: 12px;
+
+  }
+
+  .card {
+
+    min-height: 390px;
+
+    padding: 10px;
+
+  }
+
+  .card img {
+
+    height: 150px;
+
+  }
+
+  .card h3 {
+
+    font-size: 14px;
+
+    height: 58px;
+
+  }
+
+  .deal {
+
+    margin: 12px;
+
+    padding: 14px;
+
+  }
+
+  .deal-card {
+
+    width: 100%;
+
+    min-height: 340px;
+
+  }
+
+  .deal-card img {
+
+    height: 130px;
+
+  }
+
+  .deal-card h4 {
+
+    font-size: 15px;
+
     height: 60px;
+
+  }
+
+  .buy {
+
+    width: 100%;
+
+    text-align: center;
+
+  }
+
+  .tabs {
+
+    overflow-x: auto;
+
+    flex-wrap: nowrap;
+
+    scrollbar-width: none;
+
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+
+    flex-shrink: 0;
+
+    min-width: 150px;
+
+  }
+
+  .modal-content {
+
+    width: 100%;
+
+    padding: 14px;
+
+  }
+
+  .slide img {
+
+    height: 240px;
+
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .hero-title {
+
+    font-size: 42px;
+
+  }
+
+  .card {
+
+    min-height: 360px;
+
+  }
+
+  .card img {
+
+    height: 135px;
+
+  }
+
+  .card h3 {
+
+    font-size: 13px;
 
   }
 
@@ -799,11 +962,6 @@ body {
     Health & Fitness
   </button>
 
-  <button class="tab"
-          data-category="Books & Courses">
-    Books & Courses
-  </button>
-
 </div>
 
 <div id="productGrid"
@@ -816,7 +974,7 @@ body {
 
     <span id="closeModal"
           class="close">
-      &times;
+      ×
     </span>
 
     <div class="modal-slider">
