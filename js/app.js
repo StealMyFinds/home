@@ -51,23 +51,35 @@ function renderDeals(productsList) {
             (p.price / 100).toFixed(2);
 
           const originalPrice =
-            p.originalPrice
-            ? (p.originalPrice / 100)
+            p.originalPrice || null;
+
+          const formattedOriginal =
+            originalPrice
+            ? (originalPrice / 100)
                 .toFixed(2)
             : null;
 
           const discountPercent =
-            p.originalPrice
+            originalPrice
             ? Math.round(
                 (
                   (
-                    p.originalPrice -
+                    originalPrice -
                     p.price
                   ) /
-                  p.originalPrice
+                  originalPrice
                 ) * 100
               )
             : null;
+
+          const imageSrc =
+
+            (p.images &&
+             p.images.length > 0)
+
+            ? p.images[0]
+
+            : (p.image || "");
 
           return `
 
@@ -84,16 +96,14 @@ function renderDeals(productsList) {
                 : ""
               }
 
-              <img src="${
-                p.images?.[0] ||
-                p.image
-              }">
+              <img src="${imageSrc}">
 
               <h4>${p.name}</h4>
 
               <p>
+
                 ${
-                  originalPrice
+                  formattedOriginal
                   ? `
                     <span style="
                       text-decoration:
@@ -105,7 +115,7 @@ function renderDeals(productsList) {
 
                       margin-right:6px;
                     ">
-                      ₹${originalPrice}
+                      ₹${formattedOriginal}
                     </span>
                   `
                   : ""
@@ -114,6 +124,7 @@ function renderDeals(productsList) {
                 <b>
                   ₹${discountedPrice}
                 </b>
+
               </p>
 
               <a class="buy"
@@ -171,27 +182,36 @@ function renderProducts(productsList) {
       (p.price / 100).toFixed(2);
 
     const originalPrice =
-      p.originalPrice
-      ? (p.originalPrice / 100)
+      p.originalPrice || null;
+
+    const formattedOriginal =
+      originalPrice
+      ? (originalPrice / 100)
           .toFixed(2)
       : null;
+
+    const imageSrc =
+
+      (p.images &&
+       p.images.length > 0)
+
+      ? p.images[0]
+
+      : (p.image || "");
 
     return `
 
       <div class="card"
            data-id="${p.id}">
 
-        <img src="${
-          p.images?.[0] ||
-          p.image
-        }">
+        <img src="${imageSrc}">
 
         <h3>${p.name}</h3>
 
         <p>
 
           ${
-            originalPrice
+            formattedOriginal
             ? `
               <span style="
                 text-decoration:
@@ -203,7 +223,7 @@ function renderProducts(productsList) {
 
                 margin-right:8px;
               ">
-                ₹${originalPrice}
+                ₹${formattedOriginal}
               </span>
             `
             : ""
@@ -268,8 +288,11 @@ function openModal(product) {
       .toFixed(2);
 
   const originalPrice =
-    product.originalPrice
-    ? (product.originalPrice / 100)
+    product.originalPrice || null;
+
+  const formattedOriginal =
+    originalPrice
+    ? (originalPrice / 100)
         .toFixed(2)
     : null;
 
@@ -278,7 +301,7 @@ function openModal(product) {
   ).innerHTML = `
 
     ${
-      originalPrice
+      formattedOriginal
       ? `
         <span style="
           text-decoration:
@@ -290,7 +313,7 @@ function openModal(product) {
 
           margin-right:8px;
         ">
-          ₹${originalPrice}
+          ₹${formattedOriginal}
         </span>
       `
       : ""
@@ -326,9 +349,15 @@ function openModal(product) {
   controls.innerHTML = "";
 
   const images =
-    product.images?.length
+
+    (product.images &&
+     product.images.length > 0)
+
     ? product.images
-    : [product.image];
+
+    : (product.image
+        ? [product.image]
+        : []);
 
   let currentSlide = 0;
 
@@ -390,8 +419,12 @@ function openModal(product) {
       dot.classList.remove("active")
     );
 
-    dots[currentSlide]
-      .classList.add("active");
+    if (dots[currentSlide]) {
+
+      dots[currentSlide]
+        .classList.add("active");
+
+    }
 
   }
 
