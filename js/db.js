@@ -1,17 +1,18 @@
-import {
-  db
-} from "./firebase.js";
+import { db }
+from "./firebase.js";
 
 import {
+
   collection,
   addDoc,
   getDocs,
   deleteDoc,
   updateDoc,
   doc
+
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ➕ ADD PRODUCT
+// ➕ ADD
 export async function addProduct(product) {
 
   await addDoc(
@@ -21,7 +22,7 @@ export async function addProduct(product) {
 
 }
 
-// 📦 GET PRODUCTS
+// 📦 GET
 export async function getProducts() {
 
   const querySnapshot =
@@ -47,7 +48,7 @@ export async function getProducts() {
 
 }
 
-// ❌ DELETE PRODUCT
+// ❌ DELETE
 export async function deleteProduct(id) {
 
   await deleteDoc(
@@ -56,7 +57,7 @@ export async function deleteProduct(id) {
 
 }
 
-// ✏️ UPDATE PRODUCT
+// ✏️ UPDATE
 export async function updateProduct(
   id,
   updatedData
