@@ -252,7 +252,7 @@ body {
 
   width: 220px;
 
-  min-height: 360px;
+  min-height: 430px;
 
   text-align: center;
 
@@ -336,12 +336,26 @@ body {
 
 }
 
-/* 🔥 DEAL CARD TEXT */
+/* 🔥 DEAL TITLE */
 .deal-card h4 {
 
   margin: 0;
 
-  font-size: 20px;
+  font-size: 18px;
+
+  line-height: 1.35;
+
+  height: 74px;
+
+  overflow: hidden;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+
+  text-overflow: ellipsis;
 
   color: black;
 
@@ -709,14 +723,10 @@ body {
 
 <body>
 
-<!-- 🧭 NAV -->
 <div class="nav">
-
   <h1>STEALMYFINDS</h1>
-
 </div>
 
-<!-- 🔍 FIXED SEARCH -->
 <div class="search-wrapper">
 
   <div class="hero-search">
@@ -733,7 +743,6 @@ body {
 
 </div>
 
-<!-- 🔥 HERO -->
 <div class="hero">
 
   <div class="hero-bg">
@@ -760,10 +769,8 @@ body {
 
 </div>
 
-<!-- 🔥 DEALS -->
 <div id="dealSection"></div>
 
-<!-- 🧭 CATEGORYS -->
 <div id="categoryTabs"
      class="tabs">
 
@@ -799,11 +806,9 @@ body {
 
 </div>
 
-<!-- 🛍 PRODUCTS -->
 <div id="productGrid"
      class="grid"></div>
 
-<!-- 🪟 MODAL -->
 <div id="productModal"
      class="modal hidden">
 
