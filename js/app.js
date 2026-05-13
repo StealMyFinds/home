@@ -1,4 +1,3 @@
-```js
 import { getProducts } from "./db.js";
 
 let products = [];
@@ -177,26 +176,6 @@ function renderProducts(productsList) {
 
   const grid =
     document.getElementById("productGrid");
-
-  if (productsList.length === 0) {
-
-    grid.innerHTML = `
-
-      <div style="
-        grid-column:1/-1;
-        text-align:center;
-        padding:60px 20px;
-        font-size:22px;
-        font-weight:bold;
-      ">
-        No products found.
-      </div>
-
-    `;
-
-    return;
-
-  }
 
   grid.innerHTML = productsList.map(p => {
 
@@ -530,19 +509,19 @@ function performSearch() {
         ${p.name || ""}
         ${p.category || ""}
         ${p.description || ""}
-      `
-        .toLowerCase();
+      `.toLowerCase();
 
-      const queryWords =
+      if (!query) {
+        return true;
+      }
+
+      const words =
         query.split(" ")
-             .filter(word => word);
+             .filter(Boolean);
 
-      const matchesAllWords =
-        queryWords.every(word =>
-          searchableText.includes(word)
-        );
-
-      return matchesAllWords;
+      return words.every(word =>
+        searchableText.includes(word)
+      );
 
     });
 
@@ -559,23 +538,6 @@ function performSearch() {
       );
 
   }
-
-  // ⭐ PRIORITIZE EXACT NAME MATCHES
-  filtered.sort((a, b) => {
-
-    const aExact =
-      a.name
-        .toLowerCase()
-        .includes(query);
-
-    const bExact =
-      b.name
-        .toLowerCase()
-        .includes(query);
-
-    return bExact - aExact;
-
-  });
 
   renderProducts(filtered);
 
@@ -670,4 +632,3 @@ themeToggle.addEventListener(
 );
 
 loadProducts();
-```
