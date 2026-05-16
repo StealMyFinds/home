@@ -318,3 +318,77 @@ body {
   }
 
 }
+/* =========================
+   DARK MODE FIX
+========================= */
+
+body.dark-mode{
+  background:#111;
+  color:#fff;
+}
+
+body.dark-mode .hero{
+  background:#181818;
+}
+
+body.dark-mode .deal{
+  background:#181818;
+}
+
+body.dark-mode .nav{
+  background:#111;
+}
+
+body.dark-mode .card,
+body.dark-mode .deal-card,
+body.dark-mode .modal-content{
+  background:#1c1c1c;
+  color:white;
+  border-color:#444;
+}
+
+body.dark-mode .card h3,
+body.dark-mode .deal-card h4,
+body.dark-mode .deal-card p,
+body.dark-mode .modal-content,
+body.dark-mode .deal h2{
+  color:white;
+}
+
+body.dark-mode .tab{
+  background:#1c1c1c;
+  color:white;
+  border-color:#444;
+}
+
+body.dark-mode .tab.active{
+  background:yellow;
+  color:black;
+}
+
+body.dark-mode .buy{
+  background:yellow;
+  color:black;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select{
+  background:#222;
+  color:white;
+  border:1px solid #444;
+}
+
+body.dark-mode .old-price{
+  color:#aaa;
+}
+
+body.dark-mode .discount-badge{
+  background:yellow;
+  color:black;
+}
+
+body.dark-mode .deal-timer{
+  background:#ff3b3b;
+  color:white;
+}
